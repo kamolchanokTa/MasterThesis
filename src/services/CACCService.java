@@ -55,8 +55,7 @@ public class CACCService extends CACCServiceType{
 			String destination) {
 		this.caccServices.constructV2ICommunicationService(platoonId, rendezvousSpeed, lvSpeed, vehicleIdList, meetingLocation, meetingTime, hvStartLocation, hvStartTime, destination);
 		printPlatoonPlan(platoonId, rendezvousSpeed, lvSpeed, vehicleIdList, meetingLocation, meetingTime, hvStartLocation, hvStartTime, destination);
-//		this.caccServices.getV2IBuilder().receivePlatoonPlan(platoonId, rendezvousSpeed, lvSpeed, vehicleIdList, meetingLocation, meetingTime, hvStartLocation, hvStartTime, destination);
-//		this.caccServices.getDSRCBuilder().setVehicleList(vehicleIdList);
+
 	}
 	
 	private void printPlatoonPlan(String platoonId, double rendezvousSpeed, double lvSpeed, List<String> vehicleIdList,
@@ -70,7 +69,8 @@ public class CACCService extends CACCServiceType{
 		System.out.println("	hvStartLocation: " + hvStartLocation);
 		System.out.println("	destination: " + destination);
 		System.out.println("	vehicle Id List: " + vehicleIdList.toString());
-		
+		System.out.println("positive reputation score: " + this.caccServices.getV2IBuilder().reputationScore.getPositiveInteractionScore());
+		System.out.println("negative reputation score: " + this.caccServices.getV2IBuilder().reputationScore.getNegativeInteractionScore());
 	}
 
 	public void receiveAllInformation(String LVID, double IDfrequency,
