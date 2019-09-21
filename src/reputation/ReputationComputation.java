@@ -2,7 +2,7 @@ package reputation;
 
 
 public class ReputationComputation extends Observer{
-	private static final double satisFactionThreshold = 0.009;
+	private static final double satisFactionThreshold = 0.8;
 	ReputationScore reputationScore;
 	
 	public ReputationComputation(ReputationScore reputationScore){
@@ -10,13 +10,12 @@ public class ReputationComputation extends Observer{
 	      this.reputationScore.attach(this);
 	   }
 	
-//	public boolean validateTrustScore() {
-//        int trustScore = 0;
-//        if(trustScore/numberOfInteractions >= satisFactionThreshold){
-//            return true;
-//        }
-//        return false;
-//    }
+	public boolean validateTrustScore(int trustScore , int numberOfInteractions) {
+        if(trustScore/numberOfInteractions >= satisFactionThreshold){
+            return true;
+        }
+        return false;
+    } 
 	
 	public double calculateReputationScore() {
 
@@ -26,9 +25,11 @@ public class ReputationComputation extends Observer{
         if( overAllInteractionScore ==0){
             overAllInteractionScore = 1;
         }
-       
-        double interactionSatisfactionScore = this.reputationScore.getPositiveInteractionScore() / overAllInteractionScore;
         
+       // System.out.println(this.reputationScore.getPositiveInteractionScore() +" neg "+ this.reputationScore.getNegativeInteractionScore()+ " overall "+overAllInteractionScore);
+       
+        double interactionSatisfactionScore = ((double) this.reputationScore.getPositiveInteractionScore()/(double) overAllInteractionScore);
+        //System.out.println("interaction: "+ interactionSatisfactionScore);
 
         if (interactionSatisfactionScore >= satisFactionThreshold) {
 

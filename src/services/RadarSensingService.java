@@ -2,6 +2,7 @@ package services;
 
 import reputation.ReputationComputation;
 import reputation.ReputationScore;
+import services.DSRCCommunicationService.VehicleRole;
 import verificationScenarios.InterVehicleDistanceVerificationScenario;
 
 public class RadarSensingService extends ExternalPerceptionServiceType{
@@ -18,13 +19,13 @@ public class RadarSensingService extends ExternalPerceptionServiceType{
 		new ReputationComputation(reputationScore);
 	}
 	@Override
-	public void receiveReportedRadarRange(double reportedRadarRange, double frequency) {
+	public void receiveReportedRadarRange(double reportedRadarRange, double frequency, VehicleRole role) {
 		this.interVehicleDistance.setFrequency(frequency);
 		this.interVehicleDistance.calulateLimitDistance(reportedRadarRange);
 		
-		if(this.interVehicleDistance.verifyCloseFollowMode(reportedRadarRange)) 
+		if(this.interVehicleDistance.verifyCloseFollowMode(reportedRadarRange) && role.equals(VehicleRole.follower)) 
 			this.reputationScore.increasePositiveInteractionScore();
-		else
+		else if(role.equals(VehicleRole.follower))
 			this.reputationScore.increaseNegativeInteractionScore();
 	}
 	@Override

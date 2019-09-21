@@ -5,6 +5,7 @@ import java.util.List;
 
 import reputation.ReputationComputation;
 import reputation.ReputationScore;
+import services.DSRCCommunicationService.VehicleRole;
 
 public class CACCService extends CACCServiceType{
 	
@@ -15,6 +16,7 @@ public class CACCService extends CACCServiceType{
 	private ExternalPerceptionServiceType gpsService;
 	private InVehicleServiceType invehicleService;
 	private ControlServiceType controlService;
+	private VehicleRole role;
 	
 	private ReputationScore platoonPlanReputationScore;
 	private ReputationScore dsrcReputationScore;
@@ -90,17 +92,24 @@ public class CACCService extends CACCServiceType{
 		this.caccServices.constructGPSService(latitudeHV,longtitudeHV, gpsFrequency);
 
 		
-		this.caccServices.constructRadarSensingService(vehicleLength, reportedRadarRange,radarFrequency);
+		this.caccServices.constructRadarSensingService(vehicleLength, reportedRadarRange,radarFrequency,this.dsrcCommService.verifyRole());
 
 		
 		this.caccServices.constructControlService(reportedRadarRange, hvSpeed, LVSpeed,hvAcceleration, LVAcceleration,this.dsrcCommService.verifyRole());
-
+		setRole(this.dsrcCommService.verifyRole());
 		printCACCReceivedInformation(LVID,IDfrequency,LVSpeed, LVAcceleration, LVfrequency,detectTime,HVID,
 				hvSpeed,hvAcceleration,CANMsgFrequency,TEC,REC,
 				latitudeHV,longtitudeHV, gpsFrequency,
 				vehicleLength,reportedRadarRange,radarFrequency);
 	}
 	
+	private void setRole(VehicleRole role) {
+		this.role = role;
+	}
+	
+	public VehicleRole getRole() {
+		return role;
+	}
 	private void printCACCReceivedInformation(String lVID, double iDfrequency, double lVSpeed, double lVAcceleration,
 			double lVfrequency, double detectTime, String hVID, 
 			double hvSpeed, double hvAcceleration,double cANMsgFrequency, int TEC, int REC,

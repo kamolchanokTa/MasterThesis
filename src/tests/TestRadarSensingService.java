@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 
-
+import services.DSRCCommunicationService.VehicleRole;
 import services.ExternalPerceptionServiceType;
 import services.RadarSensingService;
 
@@ -34,21 +34,21 @@ public class TestRadarSensingService {
     public void TestValidCloseFollowMode() {
     	
     	radarSensingService.setVehicleLength(vehicleLength);
-    	radarSensingService.receiveReportedRadarRange(4.0d, 0.01d);
+    	radarSensingService.receiveReportedRadarRange(4.0d, 0.01d,VehicleRole.follower);
     	assertEquals("the vehicle is in close follow mode", 1, radarSensingService.getReputationScore().getPositiveInteractionScore());
     }
     
     @Test
     public void TestInValidCloseFollowMode() {
     	radarSensingService.setVehicleLength(vehicleLength);
-    	radarSensingService.receiveReportedRadarRange(10.0d, 0.01d);
+    	radarSensingService.receiveReportedRadarRange(10.0d, 0.01d,VehicleRole.follower);
     	assertEquals("the vehicle is not in close follow mode", 1, radarSensingService.getReputationScore().getNegativeInteractionScore());
     }
     
     @Test
     public void TestInValidFrequency() {
     	radarSensingService.setVehicleLength(vehicleLength);
-    	radarSensingService.receiveReportedRadarRange(4.0d, 0.02d);
+    	radarSensingService.receiveReportedRadarRange(4.0d, 0.02d,VehicleRole.follower);
     	assertEquals("the frequncy of update radar does not meet requirement", 1, radarSensingService.getReputationScore().getNegativeInteractionScore());
     }
 }

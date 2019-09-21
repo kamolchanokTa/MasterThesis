@@ -45,11 +45,6 @@ public class PLFControlService extends ControlServiceType {
 			this.reputationScore.increaseNegativeInteractionScore();
 		
 //		System.out.println("postive: "+ this.reputationScore.getPositiveInteractionScore() + " negative: " + reputationScore.getNegativeInteractionScore());
-		
-		if(this.controlVerification.verifyStringStability()) 
-			this.reputationScore.increasePositiveInteractionScore();
-		else
-			this.reputationScore.increaseNegativeInteractionScore();
 	}
 	
 }

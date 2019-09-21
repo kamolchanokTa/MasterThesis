@@ -2,6 +2,7 @@ package services;
 
 import reputation.ReputationComputation;
 import reputation.ReputationScore;
+import services.DSRCCommunicationService.VehicleRole;
 import verificationScenarios.PositionVerificationScenario;
 import verificationScenarios.IPositionVerificationScenario;
 
@@ -29,7 +30,7 @@ public class GPSService extends ExternalPerceptionServiceType {
 	}
 
 	@Override
-	public void receiveReportedRadarRange(double reportedRadarRange, double frequency) {
+	public void receiveReportedRadarRange(double reportedRadarRange, double frequency, VehicleRole role) {
 		// TODO Auto-generated method stub
 		
 	}

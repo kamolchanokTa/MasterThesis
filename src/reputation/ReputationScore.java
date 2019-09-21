@@ -10,9 +10,9 @@ public class ReputationScore {
 	
 	private static volatile ReputationScore instance;
 	
-	private int positiveInteractionScore; 
-	private int negativeInteractionScore; 
-	private int trustScore;
+	private int positiveInteractionScore=0; 
+	private int negativeInteractionScore=0; 
+	private int trustScore=0;
 	
 	public ReputationScore(){
 		
@@ -60,19 +60,19 @@ public class ReputationScore {
 
     public void setNegativeInteractionScore(int negativeInteractionScore) {
         this.negativeInteractionScore = negativeInteractionScore;
-        notifyAllObservers();
+        //notifyAllObservers();
     }
 
     
 
     public void increasePositiveInteractionScore() {
         positiveInteractionScore++;
-        notifyAllObservers();
+        //notifyAllObservers();
     }
 
     public void increaseNegativeInteractionScore() {
         negativeInteractionScore++;
-        notifyAllObservers();
+       // notifyAllObservers();
     }
 
     
@@ -85,5 +85,11 @@ public class ReputationScore {
            observer.calculateReputationScore();
         }
      }
+
+	public boolean validateTrustScore(int trustScore, int i) {
+		// TODO Auto-generated method stub
+		return observers.get(0).validateTrustScore(trustScore,i);
+
+	}
 
 }

@@ -86,9 +86,9 @@ public class CACCServiceDirector {
 		this.GPSBuilder.receiveVehicleLocation(latitudeHV,longtitudeHV, gpsFrequency);
     }
 	
-	public void constructRadarSensingService(double vehicleLength, double reportedRadarRange, double radarFrequency) {
+	public void constructRadarSensingService(double vehicleLength, double reportedRadarRange, double radarFrequency, VehicleRole role) {
 		this.RadarBuilder.setVehicleLength(vehicleLength);
-		this.RadarBuilder.receiveReportedRadarRange(reportedRadarRange,radarFrequency);
+		this.RadarBuilder.receiveReportedRadarRange(reportedRadarRange,radarFrequency,role);
     }
 	
 	public void constructControlService(double reportedRadarRange, double hvSpeed, double lVSpeed, double hvAcceleration, double lVAcceleration, VehicleRole role) {

@@ -48,18 +48,18 @@ public class PlatoonPlan extends TimeTriggeredWorker {
 //    	offset += speed;
 		
 		List<String> msg = new ArrayList<>();
-		if(offsetfollower < (prototype.followerDrivingInfo.meetingLocation - 300)) {
+		if(offsetfollower < (prototype.followerDrivingInfo.meetingLocation - 500)) {
 			offsetleader += prototype.leaderDrivingInfo.speed;
 			offsetfollower += prototype.followerDrivingInfo.speed;
-			msg.add("<carName TestCar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (+offsetleader) +" segmentPosY> <carSpeed " + (prototype.leaderDrivingInfo.speed/6)+" carSpeed>");
-			msg.add("<carName Camcar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (offsetfollower) +" segmentPosY> <carSpeed " +  (prototype.followerDrivingInfo.speed/6)+" carSpeed>");	
+			msg.add("<carName TestCar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (+offsetleader) +" segmentPosY> <carSpeed " + (prototype.leaderDrivingInfo.speed)+" carSpeed>");
+			msg.add("<carName Camcar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (offsetfollower) +" segmentPosY> <carSpeed " +  (prototype.followerDrivingInfo.speed)+" carSpeed>");	
 
 		}
 		else {
 			offsetleader += prototype.leaderDrivingInfo.speed;
 			offsetfollower += prototype.leaderDrivingInfo.speed ;
-			msg.add("<carName TestCar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (+offsetleader) +" segmentPosY> <carSpeed " + (prototype.leaderDrivingInfo.speed/6)+" carSpeed>");	
-			msg.add("<carName Camcar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (offsetfollower) +" segmentPosY> <carSpeed " +  (prototype.leaderDrivingInfo.speed/6)+" carSpeed>");
+			msg.add("<carName TestCar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (+offsetleader) +" segmentPosY> <carSpeed " + (prototype.leaderDrivingInfo.speed)+" carSpeed>");	
+			msg.add("<carName Camcar carName> <segmentPosX -4 segmentPosX> <segmentPosY "+ (offsetfollower) +" segmentPosY> <carSpeed " +  (prototype.leaderDrivingInfo.speed)+" carSpeed>");
 
 		}
         for(int i = 0; i < msg.size();i++)

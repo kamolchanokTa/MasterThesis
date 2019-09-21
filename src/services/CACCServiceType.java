@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import reputation.ReputationScore;
+import services.DSRCCommunicationService.VehicleRole;
 
 public abstract class CACCServiceType {
 
@@ -27,4 +28,6 @@ public abstract class CACCServiceType {
 			String destination);
 	
 	public abstract void combineReputationScores();
+	
+	public abstract VehicleRole getRole();
 }
